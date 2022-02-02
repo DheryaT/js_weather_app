@@ -1,0 +1,123 @@
+.container{
+    max-width: 300px;
+    margin: 10vh auto 0 auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.685);
+    border-left: 1px solid rgba(255, 255, 255, 0.568);
+    border-right: 1px solid rgba(58, 57, 57, 0.329);
+    border-bottom: 1px solid rgba(58, 57, 57, 0.329);
+    border-radius: 10px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(64, 147, 224, 0.151);
+    box-shadow: 10px 10px 43px 5px rgba(0, 0, 0, 0.486);
+}
+
+body{
+    background-image:url('images/background/Cloudy.jpg');
+    background-size: cover;
+}
+
+.info{
+    padding: 20px;
+    text-align: center;
+    font-size: 32px;
+    color: white;
+    font-family: Tahoma, sans-serif;
+}
+
+#hourly{
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.685);
+    border-right: 1px solid rgba(255, 255, 255, 0.568);
+    border-top: 1px solid rgba(58, 57, 57, 0.329);
+    border-left: 1px solid rgba(58, 57, 57, 0.329);
+    box-shadow: inset 0px 0px 43px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    color:  white;
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+
+.hours{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    line-height: 20px;
+    font-size: 15px;
+    font-family: Tahoma, sans-serif;
+    padding: 5px;
+    margin: 0px 10px;
+}
+
+#daily{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    flex-wrap: normal;
+    margin-top: 20px;;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.685);
+    border-right: 1px solid rgba(255, 255, 255, 0.568);
+    border-top: 1px solid rgba(58, 57, 57, 0.329);
+    border-left: 1px solid rgba(58, 57, 57, 0.329);
+    border-radius: 10px;
+    height: 150px;
+    box-shadow: inset 0px 0px 43px 5px rgba(0, 0, 0, 0.25);
+    color: white;
+}
+
+.hourTemp{
+    font-size: 10px;
+}
+
+.day{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    padding: 10px;
+    font-size: 15px;
+    font-family: Tahoma, sans-serif;
+}
+
+.dayInfo{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+}
+
+.dayText{
+    width: 40%;
+}
+
+.mm{
+    display: flex;
+    flex-direction: row;
+    font-size: 12.5px;
+}
+
+.dayIcon{
+    float: right;
+}
+
+::-webkit-scrollbar {
+    width: 7.5px;
+    height: 7.5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(2, 2, 2, 0.281); 
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0000008e; 
+  }
