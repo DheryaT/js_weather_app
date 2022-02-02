@@ -3,6 +3,10 @@ let date = new Date();
 let curHour = date.getHours();
 var dayOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+let background = document.getElementById('background');
+
+var dN = curHour < 6 ? 'Night' : (curHour  > 19 ? 'Night' : 'Day');
+
 var weatherDict = {
     0: "Clear",
     1: "MainlyClear",
@@ -13,7 +17,7 @@ var weatherDict = {
     51: "Drizzle",
     53: "Drizzle",
     55: "Drizzle",
-    61: "Rain",
+    61: "Drizzle",
     63: "Rain",
     65: "Rain",
     71: "Snow",
@@ -37,8 +41,28 @@ request.onload = () => {
         curTemp.innerText = currentTemp(JSON.parse(request.response)) +"°c";
         addHours(JSON.parse(request.response));
         addDays(JSON.parse(request.response));
+        setBackground(JSON.parse(request.response));
+
     }else{
         console.log(`error ${request.status} ${request.statusText}`)
+    }
+}
+
+function setBackground(requestObj){
+    var wName = backName(requestObj);
+    background.style.backgroundImage = `url('images/background/${dN}/${wName}.jpg')`;
+}
+
+function backName(requestObj){
+    var wc = requestObj.current_weather.weathercode;
+    if(wc<=1){
+        return 'Clear';
+    }else if(wc==2){
+        return 'Cloudy';
+    }else if(wc==3){
+        return 'Ovecast';
+    }else{
+        return 'Rain';
     }
 }
 
@@ -60,10 +84,16 @@ function addHour(hour, wc, temp){
     let anHour = hour > 24 ? hour-24 : (hour>12 ? hour-12 : hour);
     let amPm = hour >= 24 ? 'am' : (hour >= 12 ? 'pm': 'am');
     div.className = 'hours';
-    div.innerHTML = `<div class='hourTemp'>${temp}°c</div><img src="images/icons/${weatherDict[wc]}.png" height = 20px> ${anHour}${amPm}`
+    var dNh = dayNightHour(hour);
+    div.innerHTML = `<div class='hourTemp'>${temp}°c</div><img src="images/icons/${dNh}/${weatherDict[wc]}.png" height = 20px> ${anHour}${amPm}`
     hourDiv.appendChild(
         div
     )
+}
+
+function dayNightHour(hour){
+    var cHour = hour > 24 ? hour-24 : hour;
+    return cHour < 6 ? 'Night' : (cHour  > 19 ? 'Night' : 'Day');
 }
 
 function addDays(requestObj){
@@ -82,7 +112,7 @@ function addDay(day, maxTemp, minTemp, wc){
     let dailyDiv = document.getElementById('daily');
     const div =document.createElement('div');
     div.className = 'day';
-    div.innerHTML = `<div class = 'dayInfo' ><div class ='dayText'>${day}</div><div class = 'mm' > ${minTemp}°c &#8652; ${maxTemp}°c</div></div><img class = 'dayIcon' src="images/icons/${weatherDict[wc]}.png" height = 25px>`
+    div.innerHTML = `<div class = 'dayInfo' ><div class ='dayText'>${day}</div><div class = 'mm' > ${minTemp}°c &#8652; ${maxTemp}°c</div></div><img class = 'dayIcon' src="images/icons/Day/${weatherDict[wc]}.png" height = 25px>`
     dailyDiv.appendChild(
         div
     )
